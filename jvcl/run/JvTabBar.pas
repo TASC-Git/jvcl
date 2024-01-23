@@ -317,6 +317,7 @@ type
     FRepeatTimer: TTimer;
     FScrollRepeatedClicked: Boolean;
     FOnLeftTabChange: TNotifyEvent;
+    FRightMargin: integer;
 
     function GetLeftTab: TJvTabBarItem;
     procedure SetLeftTab(Value: TJvTabBarItem);
@@ -336,6 +337,7 @@ type
     procedure SetPageList(const Value: TCustomControl);
     procedure SetOrientation(const Value: TJvTabBarOrientation);
     procedure TimerExpired(Sender: TObject);
+    procedure SetRightMargin(const Value: integer);
   protected
     procedure DrawScrollBarGlyph(Canvas: TCanvas; X, Y: Integer; Left, Disabled: Boolean);
     procedure Resize; override;
@@ -410,6 +412,7 @@ type
     property AllowUnselected: Boolean read FAllowUnselected write FAllowUnselected default False;
     property SelectBeforeClose: Boolean read FSelectBeforeClose write FSelectBeforeClose default False;
     property Margin: Integer read FMargin write SetMargin default 6;
+    property RightMargin : integer read FRightMargin write SetRightMargin default 12;
     property FlatScrollButtons: Boolean read FFlatScrollButtons write SetFlatScrollButtons default True;
     property Hint: TCaption read FHint write SetHint;
     property AllowTabMoving: Boolean read FAllowTabMoving write FAllowTabMoving default False;
@@ -451,6 +454,7 @@ type
     property AllowUnselected;
     property SelectBeforeClose;
     property Margin;
+    property RightMargin;
     property FlatScrollButtons;
     property AllowTabMoving;
 
@@ -523,6 +527,7 @@ begin
   FFlatScrollButtons := True;
 
   FMargin := 6;
+  FRightMargin := 12;
 
   Align := alTop;
   Height := 23;
@@ -667,6 +672,11 @@ begin
     if not (csDestroying in ComponentState) then
       Invalidate;
   end;
+end;
+
+procedure TJvCustomTabBar.SetRightMargin(const Value: integer);
+begin
+  FRightMargin := Value;
 end;
 
 procedure TJvCustomTabBar.SetImages(Value: TCustomImageList);
@@ -1008,9 +1018,9 @@ begin
           Exit;
         end;
       end;
-    if (FClosingTab = nil) and AllowTabMoving and
+    if (Tab <> nil) and (FClosingTab = nil) and AllowTabMoving and
        ([ssLeft, ssMiddle, ssRight] * Shift = [ssLeft]) then
-      BeginDrag(False);
+      BeginDrag(False, 25);     // dq change to slow down the accidental move
   end;
   inherited MouseDown(Button, Shift, X, Y);
 end;
@@ -1498,13 +1508,13 @@ const
   BtnSize = 12;
 begin
   CalcTabsRects;
-  if (FRequiredWidth < ClientWidth) or ((FLeftIndex = 0) and
-    (FLastTabRight <= ClientWidth)) then
+  if (FRequiredWidth < ClientWidth - FRightMargin) or ((FLeftIndex = 0) and
+    (FLastTabRight <= ClientWidth - FRightMargin)) then
   begin
     FBtnLeftScroll.State := sbsHidden;
     FBtnRightScroll.State := sbsHidden;
     FLeftIndex := 0;
-    FBarWidth := ClientWidth;
+    FBarWidth := ClientWidth - FRightMargin;
     Invalidate;
   end
   else
@@ -1514,14 +1524,14 @@ begin
 
     if poBottomScrollButtons in CurrentPainter.Options then
     begin
-      FBtnLeftScroll.Rect := Bounds(ClientWidth - BtnSize * 2 - 1 - 1,
+      FBtnLeftScroll.Rect := Bounds(ClientWidth - BtnSize * 2 - 1 - 1 - FRightMargin,
         ClientHeight - BtnSize - 2, BtnSize, BtnSize);
       FBtnRightScroll.Rect := Bounds(FBtnLeftScroll.Rect.Right,
         ClientHeight - BtnSize - 2, BtnSize, BtnSize);
     end
     else
     begin
-      FBtnLeftScroll.Rect := Bounds(ClientWidth - BtnSize * 2 - 1 - 1, 2, BtnSize, BtnSize);
+      FBtnLeftScroll.Rect := Bounds(ClientWidth - BtnSize * 2 - 1 - 1 - FRightMargin, 2, BtnSize, BtnSize);
       FBtnRightScroll.Rect := Bounds(FBtnLeftScroll.Rect.Right, 2, BtnSize, BtnSize);
     end;
     if not FlatScrollButtons then
