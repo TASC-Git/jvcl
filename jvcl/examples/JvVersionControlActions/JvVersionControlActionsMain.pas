@@ -6,7 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, FileCtrl, JvVersionControlActions, ActnList,
   JvVersionControlActionsEngine, Menus, Buttons, ImgList, JvActionsEngine, Mask, JvExMask, JvToolEdit, ExtCtrls,
-  JvExExtCtrls, JvExtComponent, JvPanel, JvExStdCtrls, JvCombobox, JvDriveCtrls, JvListBox;
+  JvExExtCtrls, JvExtComponent, JvPanel, JvExStdCtrls, JvCombobox, JvDriveCtrls, JvListBox,
+  System.Actions, System.ImageList;
 
 type
   TjvVersionControlActionMemoEngine = class(TjvVersionControlActionEngine)

@@ -1,0 +1,576 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{031EC4B8-DC66-487C-8C00-FE03871C0CFA}</ProjectGuid>
+        <MainSource>JVCLMegaDemo.dpr</MainSource>
+        <Base>True</Base>
+        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <TargetedPlatforms>693267</TargetedPlatforms>
+        <AppType>Application</AppType>
+        <FrameworkType>VCL</FrameworkType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+        <Cfg_1>true</Cfg_1>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+        <Cfg_2>true</Cfg_2>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base)'!=''">
+        <DCC_E>false</DCC_E>
+        <DCC_F>false</DCC_F>
+        <DCC_K>false</DCC_K>
+        <DCC_N>true</DCC_N>
+        <DCC_S>false</DCC_S>
+        <DCC_ImageBase>00400000</DCC_ImageBase>
+        <DCC_DebugInformation>1</DCC_DebugInformation>
+        <DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
+        <DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
+        <DCC_ExeOutput>..\..\bin</DCC_ExeOutput>
+        <DCC_DcuOutput>..\..\dcu</DCC_DcuOutput>
+        <DCC_UnitSearchPath>..\..\run;..\..\common;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <SanitizedProjectName>JVCLMegaDemo</SanitizedProjectName>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1)'!=''">
+        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
+        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2)'!=''">
+        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+        <DCC_Optimize>false</DCC_Optimize>
+        <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+        <DCC_RangeChecking>true</DCC_RangeChecking>
+        <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
+    </PropertyGroup>
+    <ItemGroup>
+        <DelphiCompile Include="$(MainSource)">
+            <MainSource>MainSource</MainSource>
+        </DelphiCompile>
+        <DCCReference Include="..\JvDBSearch\JvDBSearchDemoMainForm.pas">
+            <Form>Mainform</Form>
+        </DCCReference>
+        <DCCReference Include="JvFormsU.pas">
+            <Form>JvFormsFrm</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="JvAnimatedTitelform.pas">
+            <Form>frAnimatedTitel</Form>
+        </DCCReference>
+        <DCCReference Include="JvPerforatedform.pas">
+            <Form>frPerforatedForm</Form>
+        </DCCReference>
+        <DCCReference Include="JvTransparentFormd.pas">
+            <Form>frTransparentForm</Form>
+        </DCCReference>
+        <DCCReference Include="Jvanimatedformicondemo.pas">
+            <Form>frAnimatedFormIcon</Form>
+        </DCCReference>
+        <DCCReference Include="Jvanimatedappicondemo.pas">
+            <Form>frAnimatedApplicationicon</Form>
+        </DCCReference>
+        <DCCReference Include="JvFormplacedemo.pas">
+            <Form>frFormplace</Form>
+        </DCCReference>
+        <DCCReference Include="JvFormanimationdemo.pas">
+            <Form>frFormAnimation</Form>
+        </DCCReference>
+        <DCCReference Include="JvAutosizeformdemo.pas">
+            <Form>frAutosize</Form>
+        </DCCReference>
+        <DCCReference Include="JvMagnetformdemo.pas">
+            <Form>frmagnet</Form>
+        </DCCReference>
+        <DCCReference Include="JvGradientformdemo.pas">
+            <Form>frgradient</Form>
+        </DCCReference>
+        <DCCReference Include="JvDialogsU.pas">
+            <Form>JvDialogsFrm</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="JvEditsU.pas">
+            <Form>JvEditsFrm</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="JvChoosersU.pas">
+            <Form>JvChoosersFrm</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\JvFileListBox\FileListBoxMainFormU.pas">
+            <Form>FileListBoxMainForm</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="JvPanelsU.pas">
+            <Form>JvPanelsFrm</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="JvDateTimeU.pas">
+            <Form>JvDateTimeFrm</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="JvControlsU.pas">
+            <Form>JvControls</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="hello.pas">
+            <Form>WelcomeForm</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\JvZoom\JvZoomMainFormU.pas">
+            <Form>JvZoomMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvContentScroller\ContentScrollerMainFormU.pas">
+            <Form>ContentScrollerMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="JvButtonsU.pas">
+            <Form>JvButtons</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\JvDBDateTimePicker\JvDBDateTimePickerMainFormU.pas">
+            <Form>JvDBDateTimePickerMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="JvFrameEmpty.pas">
+            <Form>frEmpty</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\JvListComb\ListCombMainFormU.pas">
+            <Form>ListCombMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="JvTrayIconDemo.pas">
+            <Form>frTrayicon</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvTreeViewAsMenu\JvTreeViewAsMenuMainFormU.pas">
+            <Form>JvTreeViewAsMenuMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="JvWallpaperform.pas">
+            <Form>frWallpaper</Form>
+        </DCCReference>
+        <DCCReference Include="JvWinDialogsU.pas">
+            <Form>JvWinDialogs</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\JvArrowButton\ArrowButtonMainFormU.pas">
+            <Form>ArrowButtonMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvAni\JvAniMainFormU.pas">
+            <Form>JvAniMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDataEmbedded\JvDataEmbeddedMainFormU.pas">
+            <Form>JvDataEmbeddedMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvSearchFile\JvSearchFileMainFormU.pas">
+            <Form>JvSearchFileMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvNTEventLog\JvNTEventLogMainFormU.pas">
+            <Form>JvNTEventLogMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvMruList\JvMruListMainFormU.pas">
+            <Form>JvMruListMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvLogFile\JvLogFileMainFormU.pas">
+            <Form>JvLogFileMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvInstallLabel\InstallLabelMainFormU.pas">
+            <Form>InstallLabelMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvBrowseFolder\JvBrowseFolderMainFormU.pas">
+            <Form>JvBrowseFolderMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvClipboardViewer\JvClipboardViewerMainFormU.pas">
+            <Form>JvClipboardViewerMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvWindowsTitle\JvWindowsTitleMainFomU.pas">
+            <Form>JvWindowsTitleMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\RALib\RaHtHints\RaHtHintsMainFormU.pas">
+            <Form>RaHtHintsMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvBalloonHint\JvBalloonHintMainFormU.pas">
+            <Form>JvBalloonHintMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="OtherStandAlone.pas">
+            <Form>OtherMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvHTMLParser\JvHTMLParserMainFormU.pas">
+            <Form>JvHTMLParserMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvLinkLabel\JvLinkLabelMainFormU.pas">
+            <Form>JvLinkLabelMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvLinkLabel\CategCh.pas"/>
+        <DCCReference Include="..\JvLinkLabel\InfoStrings.pas"/>
+        <DCCReference Include="..\JvLinkLabel\Play.pas">
+            <Form>frmPlay</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvScreenCapture\JvScreenCaptureMainFormU.pas">
+            <Form>JvScreenCaptureMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvShFileOperation\JvShFileOperationMainFormU.pas">
+            <Form>JvShFileOperationMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvSystemPopUp2\JvSystemPopup2MainFormU.pas">
+            <Form>JvSystemPopup2MainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvSystemPopup\JvSystemPopupMainFormU.pas">
+            <Form>JvSystemPopupMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvThumbnail\JvThumbnailMainFormU.pas">
+            <Form>JvThumbnailMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvThumbnail\JvThumbnailChildFormU.pas">
+            <Form>JvThumbnailChildForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvRegistryTreeView\RegTVMainFormU.pas">
+            <Form>RegTVMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvRunDll32\InfoFrm.pas">
+            <Form>frmInfo</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvRunDll32\RunDll32MainFormU.pas">
+            <Form>RunDll32MainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvTimeline\TimelineNotesFormU.pas">
+            <Form>TimelineNotesForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvTimeline\TimelineMainFormU.pas">
+            <Form>TimelineMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvTipOfDay\TipOfDayMainFormU.pas">
+            <Form>TipOfDayMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvTMTimeLine\TMTimeLineMainFormU.pas">
+            <Form>TMTimeLineMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvTMTimeLine\frmMemoEdit.pas">
+            <Form>MemoEditFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvZLibMultiple\JvZLibMultipleMainFormU.pas">
+            <Form>JvZLibMultipleMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvProfiler32\Profiler32MainFormU.pas">
+            <Form>Profiler32MainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvFindReplace\FindReplaceMainFormU.pas">
+            <Form>FindReplaceMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvPlayList\JvPlayListMainFormU.pas">
+            <Form>JvPlaylistMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="RessourcesFormMain.pas">
+            <Form>RessourcesForm</Form>
+        </DCCReference>
+        <DCCReference Include="SearchingForm.pas">
+            <Form>SearchingFormMain</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvCreateProcess\CreateProcessExampleMainFormU.pas">
+            <Form>CreateProcessExampleMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvCreateProcess\ConsoleExampleMainFormU.pas">
+            <Form>ConsoleExampleMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\Globus\XMLSerializer\XMLSerializerMainFormU.pas">
+            <Form>fglXMLSerializerDemo</Form>
+        </DCCReference>
+        <DCCReference Include="..\Globus\XMLSerializer\testClasses.pas"/>
+        <DCCReference Include="..\JvAppHotKey\JvAppHotKeyDemoMainFormU.pas">
+            <Form>JvAppHotKeyDemoMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvAppStorage\Base Example\JvAppStorageBaseMainFrmU.pas">
+            <Form>JvAppStorageBaseMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvAppStorage\SelectList Example\JvAppStorageSelListMainFrmU.pas">
+            <Form>JvAppStorageSelListMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvAppStorage\SubStorage Example\JvAppStorageSubStorageMainFrm.pas">
+            <Form>JvAppStorageSubStorageMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvAviCapture\JvAviCapDemoFrmU.pas">
+            <Form>JvAviCapDemoFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvBackground\BackgroundControl\TVDemoMain.pas">
+            <Form>JvBackgroundDemoFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvBackground\BackgroundControl\JvBackgroundTreeview.pas"/>
+        <DCCReference Include="..\JvBackground\MDIForm\MDIBkgndDemoSettings.pas">
+            <Form>BkgndImageSettings</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvBackground\MDIForm\MDIBkgndDemoChld.pas">
+            <Form>MDIChildForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvBackground\MDIForm\MDIBkgndDemoFrame.pas">
+            <Form>DemoFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\JvBackground\MDIForm\MDIBkgndDemoMain.pas">
+            <Form>MDIMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvBehaviorLabel\JvBehaviorLblMainFrmU.pas">
+            <Form>JvBehaviorLblMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvBMPAnimator\BmpAnimMainFormU.pas">
+            <Form>BmpAnimMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvChangeNotify\ChangeNotificationMainFormU.pas">
+            <Form>ChangeNotificationMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvChangeNotify\ChangeNotificationDirDlgU.pas">
+            <Form>ChangeNotificationDirDlg</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvOutlookBar\OLBarMainFormU.pas">
+            <Form>OLBarMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvMail\MailExampleMainFormU.pas">
+            <Form>MailExampleMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvInspectorDB\JvInspectorDBDemoMainFormU.pas">
+            <Form>JvInspectorDBDemoMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvInspector\InspectorSimpleExampleMain.pas">
+            <Form>SimpleMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvInspector\InspectorExampleMain.pas">
+            <Form>frmInspector</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvInspector\InspectorExampleTestForm.pas">
+            <Form>frmTest</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvTransparentButton\TransBtnFormMainU.pas">
+            <Form>TransBtnFormMain</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvShellHook\JvShellHookDemoMainFormU.pas">
+            <Form>JvShellHookDemoMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvScrollingWindow\ScrollWinMainFormU.pas">
+            <Form>JvScrollingWindowMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvLED\LEDMain.pas">
+            <Form>LEDDemoMain</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvStarfield\StarFieldMain.pas">
+            <Form>StarfieldMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvCharMap\JvCharMapMainFrmU.pas">
+            <Form>JvCharMapMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvChartDemo\JvChartDemoFm.pas">
+            <Form>JvChartDemoForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvChartDemo\StatsClasses.pas"/>
+        <DCCReference Include="..\JvCheckBoxRadioButton\JvCheckBoxRadioBtnFrmU.pas">
+            <Form>JvCheckBoxRadioBtnFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvCheckTreeView\CheckTVDemoFrm.pas">
+            <Form>frmCheckTVDemo</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvColorCombo\JvColorComboDemoMainFormU.pas">
+            <Form>JvColorComboDemoMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvControls\ControlsExampleMainFormU.pas">
+            <Form>ControlsExampleMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvCSVDataSet\CsvDataSourceDemoFm.pas"/>
+        <DCCReference Include="..\JvID3v1\JvID3v1MainFormU.pas">
+            <Form>JvID3v1MainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvID3v2\JvID3v2MainFormU.pas">
+            <Form>JvID3v2MainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvID3v2\JvID3v2EditFormU.pas">
+            <Form>JvID3v2EditForm</Form>
+        </DCCReference>
+        <DCCReference Include="JvHiddenGems.pas">
+            <Form>JvHiddenGemsForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDSADialogs\DSADialogsMainFormU.pas">
+            <Form>DSADialogsMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDSADialogs\MessageDlgEditorSelectIcon.pas">
+            <Form>frmMessageDlgEditorSelectIcon</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDSADialogs\DSAExamplesCustom1.pas">
+            <Form>frmDSAExamplesCustomDlg1</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDSADialogs\DSAExamplesCustom2.pas">
+            <Form>frmDSAExamplesCustomDlg2</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDSADialogs\DSAExamplesProgressDlg.pas">
+            <Form>frmDSAExamplesProgressDlg</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDSADialogs\MessageDlgEditorMain.pas">
+            <Form>frmMessageDlgEditor</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvComboListBox\JvComboListBoxDemoForm.pas">
+            <Form>JvComboListBoxDemoFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvComboListBox\DropFrm.pas">
+            <Form>frmDrop</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvComputerInfoEx\JvComputerInfoExDemoForm.pas">
+            <Form>JvComputerInfoExDemoFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDBActions\JvDBActionMainForm.pas">
+            <Form>JvDBActionMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDBFindEdit\JvDBFindEditDemoForm.pas">
+            <Form>JvDBFindEditDemoFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDBGridExport\JvDBGridExportDemoMainForm.pas">
+            <Form>JvDBGridExportDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDBHTLabel\JvDBHTLabelDemoMainForm.pas">
+            <Form>JvDBHTLabelDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDBImage\JvDBImageDemoMainForm.pas">
+            <Form>JvDBImageDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDbMaskEdit\JvDbMaskEditDemoForm.pas">
+            <Form>JvDbMaskEditDemoFrm</Form>
+        </DCCReference>
+        <DCCReference Include="Unitmain.pas">
+            <Form>Mainfrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDesktopAlert\JvDesktopAlertDemoForm.pas">
+            <Form>JvDesktopAlertDemoFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDiagramShape\1. WebSiteScanner\WebMapperDemoMainForm.pas">
+            <Form>WebMapperDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDiagramShape\1. WebSiteScanner\JimParse.pas"/>
+        <DCCReference Include="..\JvDiagramShape\2. UseCaseEditor\UseCaseDemoMainForm.pas">
+            <Form>UseCaseDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDiagramShape\2. UseCaseEditor\CaptionEditForm.pas">
+            <Form>CaptionEditDlg</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDiagramShape\3. DependencyWalker\DependencyWalkerDemoMainForm.pas">
+            <Form>DependencyWalkerDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDiagramShape\3. DependencyWalker\DepWalkConsts.pas"/>
+        <DCCReference Include="..\JvDiagramShape\3. DependencyWalker\DepWalkUtils.pas"/>
+        <DCCReference Include="..\JvDiagramShape\3. DependencyWalker\OptionsFrm.pas">
+            <Form>frmOptions</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDiagramShape\3. DependencyWalker\PersistForm.pas">
+            <Form>frmPersistable</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDiagramShape\3. DependencyWalker\PersistSettings.pas"/>
+        <DCCReference Include="..\JvDiagramShape\3. DependencyWalker\PrintFrm.pas">
+            <Form>frmPrint</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDiagramShape\3. DependencyWalker\StatsFrm.pas">
+            <Form>frmUnitStats</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDialogs\fDialogs.pas">
+            <Form>JvDialogsDemoFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDomainUpDown\JvDomainUpDownDemoMainForm.pas">
+            <Form>JvDomainUpDownDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvDotNetCtrls\JvDotNetDemoMainForm.pas">
+            <Form>JvDotNetDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvErrorIndicator\JvErrorIndicatorMainDemoForm.pas">
+            <Form>JvErrorIndicatorMainDemoFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvFooterAndGroupHeader\JvFooterAndGroupHeaderDemoForm.pas">
+            <Form>JvFooterAndGroupHeaderDemoFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvFullColorCircleDialog\JvFullColorCircleDialogMainForm.pas">
+            <Form>JvFullColorCircleDlgMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvFullColorDialog\JvFullColorDialogMainForm.pas">
+            <Form>JvFullColorDialogMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvRichEdit\EditorMainFormU.pas">
+            <Form>EditorMainForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvRichEdit\XPColorMenuItemPainter.pas"/>
+        <DCCReference Include="..\JvRichEdit\ParagraphFormatFormU.pas">
+            <Form>ParagraphFormatForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvRichEdit\TabsFormU.pas">
+            <Form>TabsForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvGIFAnimator\GIFMAIN.PAS">
+            <Form>AnimatorForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvGIFAnimator\Gifprvw.pas">
+            <Form>PreviewForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvGIFAnimator\GIFPAL.PAS">
+            <Form>PaletteForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvMouseGesture\uJvMouseGesture.pas">
+            <Form>JvMouseGestureDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvNavigationPane\JvNavPaneDemoMainForm.pas">
+            <Form>JvNavPaneDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvManagedThreads\Balls\fBalls.pas">
+            <Form>fBouncingBalls</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvManagedThreads\Philosophers\fPhilosophers.pas">
+            <Form>frmDiningPhilosophers</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvMarkupLabel\JvMarkupLabelDemoMainForm.pas">
+            <Form>JvMarkupLabelDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvMenus\JvMenusExampleMainForm.pas">
+            <Form>JvMenusExampleMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvOutlookBarCustomDraw\JvOutlookBarCustomDrawDemoMainForm.pas">
+            <Form>JvOutlookBarCustomDrawDemoMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvPackageModify\PackageModifierMainForm.pas">
+            <Form>PackageModifierMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvPageListTreeView\JvPageListTreeViewMainForm.pas">
+            <Form>JvPageListTreeViewMainFrm</Form>
+        </DCCReference>
+        <DCCReference Include="..\JvPanel\JvPanelDemoFrm.pas">
+            <Form>JvPanelDemoMainFrm</Form>
+        </DCCReference>
+        <BuildConfiguration Include="Base">
+            <Key>Base</Key>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Debug">
+            <Key>Cfg_2</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Delphi.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Delphi.Personality>
+                <Source>
+                    <Source Name="MainSource">JVCLMegaDemo.dpr</Source>
+                </Source>
+            </Delphi.Personality>
+            <Platforms>
+                <Platform value="Android">True</Platform>
+                <Platform value="Android64">True</Platform>
+                <Platform value="iOSDevice64">True</Platform>
+                <Platform value="iOSSimARM64">True</Platform>
+                <Platform value="OSX64">True</Platform>
+                <Platform value="OSXARM64">True</Platform>
+                <Platform value="Win32">True</Platform>
+                <Platform value="Win64">True</Platform>
+            </Platforms>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+    <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+</Project>

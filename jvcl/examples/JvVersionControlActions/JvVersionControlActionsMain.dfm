@@ -11,10 +11,8 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   Menu = MainMenu1
-  OldCreateOrder = False
   Visible = True
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object CommitButton: TBitBtn
     Left = 350
@@ -57,11 +55,6 @@ object Form1: TForm1
     Top = 0
     Width = 827
     Height = 98
-    HotTrackFont.Charset = DEFAULT_CHARSET
-    HotTrackFont.Color = clWindowText
-    HotTrackFont.Height = -11
-    HotTrackFont.Name = 'Tahoma'
-    HotTrackFont.Style = []
     ArrangeSettings.AutoSize = asHeight
     ArrangeSettings.AutoArrange = True
     Align = alTop
@@ -101,7 +94,6 @@ object Form1: TForm1
       Top = 8
       Width = 313
       Height = 21
-      DialogKind = dkWin32
       TabOrder = 3
       Text = 'JvDirectoryEdit'
       OnChange = JvDirectoryEditChange
@@ -123,7 +115,7 @@ object Form1: TForm1
       Top = 60
       Width = 313
       Height = 97
-      Directory = 'e:\Delphi\Components\jcl\source\vcl'
+      Directory = 'C:\Program Files (x86)\Embarcadero\Studio\23.0\bin'
       ItemHeight = 17
       TabOrder = 1
       OnChange = DirectoryListBox1Change
@@ -270,7 +262,7 @@ object Form1: TForm1
     Left = 385
     Top = 275
     Bitmap = {
-      494C010117001C00180010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010117001C00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000006000000001002000000000000060
       0000000000000000000000000000000000000000000000000000000000009F5F
       3FFF9F5F3FFFBFBF9FFF00000000000000000000000000000000000000000000
