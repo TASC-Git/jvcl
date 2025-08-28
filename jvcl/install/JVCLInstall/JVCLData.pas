@@ -398,7 +398,7 @@ type
 implementation
 
 uses
-  JclFileUtils, JclStrings,
+  JclFileUtils, JclStrings, JclIDEUtils,
   Utils, CmdLineUtils, PackageInformation, JediRegInfo;
 
 resourcestring
@@ -707,7 +707,7 @@ begin
   FGenerateMapFiles := True;
   FLinkMapFiles := Target.Platform = ctpWin32;  // linking map files into anything but x86 binaries is not yet supported
   FDeleteMapFiles := True;
-  FCompileOnly := Target.Platform <> ctpWin32;  // by default, only install under Win32
+  FCompileOnly := (Target.Platform <> ctpWin32) and (Target.IDEVersion < 23);  // by default, only install under Win32 or with Delphi 12.3 and upper
 
   FBplDir := Target.BplDir;
   // DcpDir matches the DCU output directory.
@@ -808,6 +808,13 @@ begin
   Result := FJVCLRegistryConfig;
 end;
 
+procedure AddCppPaths(ATarget: TCompileTarget; AIncludePaths, ABrowsingPaths, ALibraryPaths: TStrings; const AJVCLDir, AHppDir, AUnitOutDir: string);
+begin
+  AddPaths(AIncludePaths, True, AJVCLDir, [AHppDir]);
+  AddPaths(ABrowsingPaths, True, AJVCLDir, ['run', 'common']); // do not localize
+  AddPaths(ALibraryPaths, True, AJVCLDir, ['Resources', AUnitOutDir]); // do not localize
+end;
+
 procedure TTargetConfig.AddPathsToIDE;
 begin
   if InstalledJVCLVersion < 3 then
@@ -842,12 +849,14 @@ begin
       [Target.InsertDirMacros(DebugUnitOutDir)]); // do not localize
   if Target.SupportsPersonalities([persBCB]) then
   begin
-    AddPaths(Target.GlobalIncludePaths, True, Owner.JVCLDir,
-     [Target.InsertDirMacros(HppDir)]);
-    AddPaths(Target.GlobalCppBrowsingPaths, True, Owner.JVCLDir,
-      ['run', 'common']); // do not localize
-    AddPaths(Target.GlobalCppLibraryPaths, True, Owner.JVCLDir,
-      ['Resources', Target.InsertDirMacros(UnitOutDir)]); // do not localize
+    AddCppPaths(Target, Target.GlobalIncludePaths, Target.GlobalCppBrowsingPaths, Target.GlobalCppLibraryPaths,
+      Owner.JVCLDir, Target.InsertDirMacros(HppDir), Target.InsertDirMacros(UnitOutDir));
+
+    AddCppPaths(Target, Target.GlobalIncludePathsClang32, Target.GlobalCppBrowsingPathsClang32, Target.GlobalCppLibraryPathsClang32,
+      Owner.JVCLDir, Target.InsertDirMacros(HppDir), Target.InsertDirMacros(UnitOutDir));
+
+    AddCppPaths(Target, Target.GlobalIncludePathsWin64x, Target.GlobalCppBrowsingPathsWin64x, Target.GlobalCppLibraryPathsWin64x,
+      Owner.JVCLDir, Target.InsertDirMacros(HppDir), TJclBorRADToolInstallation.AdjustPathForWin64X(Target.InsertDirMacros(UnitOutDir)));
   end;
 
   // add
@@ -1077,16 +1086,16 @@ begin
   begin
     BplName := ProjectGroup.Packages[PkgIndex].Info.BplName;
 
-    for i := 0 to Target.KnownPackages.Count - 1 do
-      if CompareText(Target.KnownPackages[i].Name, BplName) = 0 then
+    for i := 0 to Target.GetKnownPackages.Count - 1 do
+      if CompareText(Target.GetKnownPackages[i].Name, BplName) = 0 then
       begin
         ProjectGroup.Packages[PkgIndex].Install := True;
         IsInstalled := True;
         Break;
       end;
 
-    for i := 0 to Target.DisabledPackages.Count - 1 do
-      if CompareText(Target.DisabledPackages[i].Name, BplName) = 0 then
+    for i := 0 to Target.GetDisabledPackages.Count - 1 do
+      if CompareText(Target.GetDisabledPackages[i].Name, BplName) = 0 then
       begin
         // shouldn't the following value be False?
         ProjectGroup.Packages[PkgIndex].Install := True;
@@ -1517,8 +1526,8 @@ var
   BplFilename: string;
 begin
   Target := ProjectGroup.Target;
-  KnownPackages := Target.KnownPackages;
-  DisabledPackages := Target.DisabledPackages;
+  KnownPackages := Target.GetKnownPackages;
+  DisabledPackages := Target.GetDisabledPackages;
 
   // remove JVCL packages
   for i := DisabledPackages.Count - 1 downto 0 do
@@ -1719,13 +1728,13 @@ begin
   // remove JVCL packages
   with Target do
   begin
-    for i := DisabledPackages.Count - 1 downto 0 do
-      if StartsWith(DisabledPackages.Items[i].Name, 'Jv', True) then // do not localize
-        DisabledPackages.Delete(i);
+    for i := GetDisabledPackages.Count - 1 downto 0 do
+      if StartsWith(GetDisabledPackages.Items[i].Name, 'Jv', True) then // do not localize
+        GetDisabledPackages.Delete(i);
 
-    for i := KnownPackages.Count - 1 downto 0 do
-      if StartsWith(KnownPackages.Items[i].Name, 'Jv', True) then // do not localize
-        KnownPackages.Delete(i);
+    for i := GetKnownPackages.Count - 1 downto 0 do
+      if StartsWith(GetKnownPackages.Items[i].Name, 'Jv', True) then // do not localize
+        GetKnownPackages.Delete(i);
   end;
   Target.SavePackagesLists;
 

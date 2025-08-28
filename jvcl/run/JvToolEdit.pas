@@ -427,7 +427,7 @@ type
   end;
 
   {$IFDEF RTL230_UP}
-  [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
+  [ComponentPlatformsAttribute(pidWin32 or pidWin64{$IFDEF RTL360_UP} or pidWin64x{$ENDIF RTL360_UP})]
   {$ENDIF RTL230_UP}
   TJvComboEdit = class(TJvCustomComboEdit)
   public
@@ -606,7 +606,7 @@ type
   TFileDialogKind = (dkOpen, dkSave, dkOpenPicture, dkSavePicture);
 
   {$IFDEF RTL230_UP}
-  [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
+  [ComponentPlatformsAttribute(pidWin32 or pidWin64{$IFDEF RTL360_UP} or pidWin64x{$ENDIF RTL360_UP})]
   {$ENDIF RTL230_UP}
   TJvFilenameEdit = class(TJvFileDirEdit)
   private
@@ -746,7 +746,7 @@ type
   TDirDialogKind = (dkVCL, dkWin32);
 
   {$IFDEF RTL230_UP}
-  [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
+  [ComponentPlatformsAttribute(pidWin32 or pidWin64{$IFDEF RTL360_UP} or pidWin64x{$ENDIF RTL360_UP})]
   {$ENDIF RTL230_UP}
   TJvDirectoryEdit = class(TJvFileDirEdit)
   private
@@ -1007,7 +1007,7 @@ type
   end;
 
   {$IFDEF RTL230_UP}
-  [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
+  [ComponentPlatformsAttribute(pidWin32 or pidWin64{$IFDEF RTL360_UP} or pidWin64x{$ENDIF RTL360_UP})]
   {$ENDIF RTL230_UP}
   TJvDateEdit = class(TJvCustomDateEdit)
   protected
@@ -2168,7 +2168,7 @@ end;
 
 procedure TJvCustomComboEdit.WMClear(var Msg: TMessage);
 begin
-  Text := '';
+  SelText := '';
 end;
 
 procedure TJvCustomComboEdit.WMCut(var Msg: TMessage);

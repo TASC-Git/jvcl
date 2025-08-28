@@ -185,6 +185,7 @@ type
     FShadow: TJvPageShadow;
     FOnChange: TNotifyEvent;
     FDrawMargins: Boolean;
+    FMarginColor: TColor;
     FCols: Cardinal;
     FScale: Cardinal;
     FRows: Cardinal;
@@ -216,6 +217,7 @@ type
     property Cols: Cardinal read GetCols write SetCols default 1;
     property DrawMargins: Boolean read FDrawMargins write SetDrawMargins default True;
     property HorzSpacing: Cardinal read GetHorzSpacing write SetHorzSpacing default 8;
+    property MarginColor: TColor read FMarginColor write FMarginColor default clGray;
     property Rows: Cardinal read GetRows write SetRows;
     property Shadow: TJvPageShadow read FShadow write SetShadow;
     property VertSpacing: Cardinal read GetVertSpacing write SetVertSpacing default 8;
@@ -385,7 +387,7 @@ type
   end;
 
   {$IFDEF RTL230_UP}
-  [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
+  [ComponentPlatformsAttribute(pidWin32 or pidWin64{$IFDEF RTL360_UP} or pidWin64x{$ENDIF RTL360_UP})]
   {$ENDIF RTL230_UP}
   TJvPreviewControl = class(TJvCustomPreviewControl)
   published
@@ -517,6 +519,7 @@ begin
   FScale := 100;
   FScaleMode := smFullPage;
   FColor := clWhite;
+  FMarginColor := clGray;
   FVertSpacing := 8;
   FHorzSpacing := 8;
   FDrawMargins := True;
@@ -1210,6 +1213,7 @@ begin
           if Options.DrawMargins and not EqualRect(APageRect, APrintRect) then
           begin
             Pen.Style := psDot;
+            Pen.Color := Options.MarginColor;
             Rectangle(APrintRect);
             Pen.Style := psSolid;
           end;
