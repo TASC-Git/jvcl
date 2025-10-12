@@ -180,7 +180,7 @@ type
   end;
 
   {$IFDEF RTL230_UP}
-  [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
+  [ComponentPlatformsAttribute(pidWin32 or pidWin64{$IFDEF RTL360_UP} or pidWin64x{$ENDIF RTL360_UP})]
   {$ENDIF RTL230_UP}
   TJvModernTabBarPainter = class(TJvTabBarPainter)
   private
@@ -433,7 +433,7 @@ type
   end;
 
   {$IFDEF RTL230_UP}
-  [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
+  [ComponentPlatformsAttribute(pidWin32 or pidWin64{$IFDEF RTL360_UP} or pidWin64x{$ENDIF RTL360_UP})]
   {$ENDIF RTL230_UP}
   TJvTabBar = class(TJvCustomTabBar)
   published
@@ -1018,9 +1018,13 @@ begin
           Exit;
         end;
       end;
-    if (Tab <> nil) and (FClosingTab = nil) and AllowTabMoving and
-       ([ssLeft, ssMiddle, ssRight] * Shift = [ssLeft]) then
-      BeginDrag(False, 25);     // dq change to slow down the accidental move
+      // If Self has been subclassed then ignore drag. There are cases where the drag fires unexpectedly.
+      if Self.ClassName = 'TJvTabBar' then
+      begin
+          if (Tab <> nil) and (FClosingTab = nil) and AllowTabMoving and
+          ([ssLeft, ssMiddle, ssRight] * Shift = [ssLeft]) then
+         BeginDrag(False);
+      end;
   end;
   inherited MouseDown(Button, Shift, X, Y);
 end;
